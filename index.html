@@ -87,10 +87,13 @@
   .culture-badge { margin-top: 48px; padding: 24px; border: 1px solid var(--line); font-family: 'Courier Prime', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ash); display: inline-block; }
 
   .licensing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
-  .tier { padding: 40px 32px; border: 1px solid var(--line); }
+  .tier { padding: 40px 32px; border: 1px solid var(--line); display: flex; flex-direction: column; }
   .tier-label { font-family: 'Courier Prime', monospace; font-size: 0.6rem; color: var(--ash); display: block; margin-bottom: 12px; }
   .tier h3 { font-style: italic; margin-bottom: 12px; font-size: 1.2rem; }
   .tier p { font-size: 0.85rem; color: var(--ash); line-height: 1.6; }
+  .tier-price { margin-top: auto; padding-top: 24px; border-top: 1px solid var(--line); }
+  .tier-price .amount { font-family: 'Courier Prime', monospace; font-size: 0.8rem; color: var(--ink); display: block; margin-bottom: 4px; }
+  .tier-price .unit { font-family: 'Courier Prime', monospace; font-size: 0.75rem; font-weight: 700; color: var(--ink); }
 
   /* 05 — Contact Layout Fix */
   .contact-section { padding: 100px 40px 140px; max-width: 960px; margin: 0 auto; }
@@ -250,9 +253,9 @@
     <p style="color: var(--ash);">A structured visual system built from Tokyo's residual. It licenses a world — deployed across space, sustained over time, calibrated to the specific character of each environment.</p>
   </div>
   <div class="licensing-grid">
-    <div class="tier"><span class="tier-label">Layer 01</span><h3>Concept Design</h3><p>Spatial narrative development. Unique to each property.</p></div>
-    <div class="tier"><span class="tier-label">Layer 02</span><h3>Production</h3><p>Large-format output, installation coordination.</p></div>
-    <div class="tier"><span class="tier-label">Layer 03</span><h3>License</h3><p>Annual licensing fee covering exclusive deployment rights.</p></div>
+    <div class="tier"><span class="tier-label">Layer 01</span><h3>Concept Design</h3><p>Spatial narrative development. How the series is deployed across floors, rooms, or environments. Unique to each property.</p><div class="tier-price"><span class="amount">¥3,000,000 — ¥10,000,000</span></div></div>
+    <div class="tier"><span class="tier-label">Layer 02</span><h3>Production</h3><p>Large-format output, material specification, installation coordination. Each work produced for its specific context.</p><div class="tier-price"><span class="amount">¥500,000 — ¥1,500,000</span><span class="unit">per work</span></div></div>
+    <div class="tier"><span class="tier-label">Layer 03</span><h3>License</h3><p>Annual licensing fee covering exclusive deployment rights. Renewable. Seasonal rotation available as extension.</p><div class="tier-price"><span class="amount">¥1,000,000 — ¥5,000,000</span><span class="unit">per year</span></div></div>
   </div>
 </section>
 
@@ -276,15 +279,11 @@
       </div>
       <div class="contact-item">
         <span class="label">Author</span>
-        <a href="#">Yoshihisa Sakamoto — Tokyo</a>
+        <span style="font-style: italic; font-size: 1.1rem;">Yoshihisa Sakamoto — Tokyo</span>
       </div>
     </div>
   </div>
 </section>
 
 <footer style="border-top: 1px solid var(--line); padding: 40px; max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
-  <span style="font-family:'Courier Prime'; font-size:0.65rem; color:var(--ash); letter-spacing: 0.1em; text-transform: uppercase;">© 2026 Yoshihisa Sakamoto — A City That Never Existed</span>
-</footer>
-
-</body>
-</html>
+  <span style="font-family:'Courier Prime'; font-size:0.65rem; color:var(--
