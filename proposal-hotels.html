@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposal for Hotels — never existed</title>
+  <meta name="description" content="A proposal for hotels: from lobby to guest room, we design spatial experiences that continue beyond the stay." />
+  <style>
+    :root {
+      --bg: #0c0c0c;
+      --bg-soft: #131313;
+      --card: #171717;
+      --line: rgba(255,255,255,0.12);
+      --line-strong: rgba(255,255,255,0.22);
+      --text: #f4f1ea;
+      --muted: rgba(244,241,234,0.72);
+      --dim: rgba(244,241,234,0.5);
+      --accent: #d8c7a1;
+      --max: 1180px;
+      --radius: 22px;
+      --shadow: 0 18px 50px rgba(0,0,0,0.28);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(216,199,161,0.07), transparent 28%),
+        linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(12,12,12,0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .site-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 70px;
+    }
+
+    .brand {
+      font-size: 0.92rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--dim);
+      font-size: 0.92rem;
+      transition: color 0.25s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      padding: 88px 0 54px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 22px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 34px;
+      align-items: end;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 5.3rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      max-width: 11ch;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-panel {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-panel-label {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.76rem;
+      margin-bottom: 14px;
+    }
+
+    .hero-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .hero-panel strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .section {
+      padding: 42px 0 26px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 28px;
+      margin-bottom: 28px;
+      align-items: start;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.76rem;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1rem;
+    }
+
+    .infographic-shell {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .infographic-top {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .layer-card {
+      padding: 28px 24px 24px;
+      min-height: 250px;
+      position: relative;
+    }
+
+    .layer-card:not(:last-child) {
+      border-right: 1px solid var(--line);
+    }
+
+    .layer-number {
+      color: var(--dim);
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .layer-title {
+      font-size: 1.45rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .layer-sub {
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+
+    .layer-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .flow-wrap {
+      padding: 30px 24px 26px;
+    }
+
+    .flow-title {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .flow-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .flow-card {
+      padding: 22px 18px 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.02);
+      position: relative;
+    }
+
+    .flow-card::after {
+      content: "→";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--line-strong);
+      font-size: 1.25rem;
+    }
+
+    .flow-card:last-child::after {
+      display: none;
+    }
+
+    .flow-step {
+      color: var(--dim);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 10px;
+    }
+
+    .flow-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.18rem;
+      letter-spacing: -0.02em;
+    }
+
+    .flow-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .value-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,0.02);
+      box-shadow: var(--shadow);
+    }
+
+    .value-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.16rem;
+      letter-spacing: -0.02em;
+    }
+
+    .value-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+    }
+
+    .example-card,
+    .room-stack,
+    .cta-box {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.02);
+      box-shadow: var(--shadow);
+    }
+
+    .example-card {
+      padding: 28px;
+    }
+
+    .example-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.38rem;
+      letter-spacing: -0.02em;
+    }
+
+    .example-card p {
+      margin: 0 0 22px;
+      color: var(--muted);
+    }
+
+    .space-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .space-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .space-item:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .space-label {
+      color: var(--accent);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .space-text {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .room-stack {
+      padding: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-card {
+      padding: 16px 16px 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+    }
+
+    .mini-card .mini-top {
+      color: var(--dim);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 8px;
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .cta-box {
+      padding: 32px;
+      margin-top: 18px;
+    }
+
+    .cta-box h2 {
+      max-width: 12ch;
+      margin-bottom: 14px;
+    }
+
+    .cta-box p {
+      max-width: 720px;
+      color: var(--muted);
+      margin: 0 0 24px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+      font-size: 0.95rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--line-strong);
+    }
+
+    .btn-primary {
+      background: rgba(216,199,161,0.12);
+      border-color: rgba(216,199,161,0.38);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .footer {
+      padding: 40px 0 60px;
+      color: var(--dim);
+      font-size: 0.9rem;
+    }
+
+    .footer-line {
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .section-head,
+      .example-grid,
+      .value-grid,
+      .infographic-top,
+      .flow-row {
+        grid-template-columns: 1fr;
+      }
+
+      .layer-card:not(:last-child) {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .flow-card::after {
+        display: none;
+      }
+
+      .space-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 62px;
+      }
+
+      .container {
+        width: min(calc(100% - 26px), var(--max));
+      }
+
+      .site-header-inner {
+        min-height: 64px;
+      }
+
+      h1 {
+        max-width: 100%;
+      }
+
+      .hero-panel,
+      .example-card,
+      .room-stack,
+      .cta-box,
+      .value-card,
+      .flow-card,
+      .layer-card {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container site-header-inner">
+      <a href="./index.html" class="brand">never existed</a>
+      <nav class="nav">
+        <a href="./index.html">Back to main site</a>
+        <a href="#structure">Structure</a>
+        <a href="#flow">Flow</a>
+        <a href="#value">Value</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">Proposal for Hotels</span>
+        <div class="hero-grid">
+          <div>
+            <h1>From lobby to memory.</h1>
+            <p class="hero-copy">
+              We do not simply place artworks inside a hotel.
+              We design a spatial experience that unfolds across the stay —
+              from first encounter, to private reflection, to a final takeaway
+              that allows the guest to carry part of the experience beyond the room.
+            </p>
+          </div>
+
+          <aside class="hero-panel">
+            <div class="hero-panel-label">Core idea</div>
+            <p>
+              <strong>Not decoration.</strong><br />
+              A hotel can become a sequence of impressions:
+              arrival, passage, pause, memory, and return.
+              The artwork is only one layer.<br /><br />
+              The real proposal is the design of how guests <strong>feel</strong>,
+              <strong>remember</strong>, and <strong>reconnect</strong> with the hotel after departure.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="structure">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Spatial framework</div>
+            <h2>The three-layer spatial hack</h2>
+          </div>
+          <div class="section-desc">
+            This proposal is built as a layered system rather than a simple art placement plan.
+            The visible image is only the first entry point.
+            Meaning accumulates through movement, and finally becomes a personal memory the guest can take away.
+          </div>
+        </div>
+
+        <div class="infographic-shell">
+          <div class="infographic-top">
+            <div class="layer-card">
+              <div class="layer-number">Layer 01</div>
+              <div class="layer-title">Visual Layer</div>
+              <div class="layer-sub">What the guest first sees</div>
+              <p>
+                Artworks, prints, or visual interventions introduce a slight shift in atmosphere.
+                The goal is not to fill walls, but to create the first signal that this hotel has a distinct inner world.
+              </p>
+            </div>
+
+            <div class="layer-card">
+              <div class="layer-number">Layer 02</div>
+              <div class="layer-title">Cognitive Layer</div>
+              <div class="layer-sub">What the guest begins to notice</div>
+              <p>
+                As the guest moves through lobby, corridor, and room, the images connect into a system.
+                The stay becomes legible as an experience, not as isolated decoration.
+              </p>
+            </div>
+
+            <div class="layer-card">
+              <div class="layer-number">Layer 03</div>
+              <div class="layer-title">Memory Layer</div>
+              <div class="layer-sub">What the guest carries away</div>
+              <p>
+                A card or printed artifact transforms the stay into a lasting touchpoint.
+                This is not a souvenir in the usual sense, but a continuation of the hotel’s identity outside the building.
+              </p>
+            </div>
+          </div>
+
+          <div class="flow-wrap" id="flow">
+            <div class="flow-title">Experience flow</div>
+            <div class="flow-row">
+              <div class="flow-card">
+                <div class="flow-step">Step 01</div>
+                <h3>Arrival</h3>
+                <p>
+                  The lobby introduces a visual atmosphere that immediately signals intention and character.
+                </p>
+              </div>
+
+              <div class="flow-card">
+                <div class="flow-step">Step 02</div>
+                <h3>Transition</h3>
+                <p>
+                  Corridors and shared spaces create continuity, turning movement through the hotel into narrative.
+                </p>
+              </div>
+
+              <div class="flow-card">
+                <div class="flow-step">Step 03</div>
+                <h3>Private Room</h3>
+                <p>
+                  Inside the room, the visual language becomes personal. The guest’s relationship to the hotel deepens.
+                </p>
+              </div>
+
+              <div class="flow-card">
+                <div class="flow-step">Step 04</div>
+                <h3>Takeaway</h3>
+                <p>
+                  A card extends the experience beyond checkout, creating memory, shareability, and future recall.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="value">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Why it matters</div>
+            <h2>Value for the hotel</h2>
+          </div>
+          <div class="section-desc">
+            The proposal is not only aesthetic. It also serves the hotel as a branding device,
+            a memory device, and a guest relationship device.
+          </div>
+        </div>
+
+        <div class="value-grid">
+          <div class="value-card">
+            <h3>Brand differentiation</h3>
+            <p>
+              The space feels authored rather than generically decorated.
+              Guests sense that the hotel has a worldview, not just an interior style.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h3>Emotional retention</h3>
+            <p>
+              A designed sequence is easier to remember than a single object.
+              This increases the likelihood that the stay remains vivid after departure.
+            </p>
+          </div>
+
+          <div class="value-card">
+            <h3>Post-stay touchpoint</h3>
+            <p>
+              The takeaway card creates a continuation of the guest relationship:
+              something to keep, share, revisit, or reconnect through later.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Spatial example</div>
+            <h2>How it can work inside a hotel</h2>
+          </div>
+          <div class="section-desc">
+            A first implementation does not need to cover the entire property at once.
+            It can begin with one floor, one corridor, or one guest journey, then expand.
+          </div>
+        </div>
+
+        <div class="example-grid">
+          <div class="example-card">
+            <h3>A phased introduction</h3>
+            <p>
+              The proposal can start small while still feeling complete.
+              This is not about “adding art” room by room.
+              It is about establishing a coherent sequence of experience in a controlled pilot area.
+            </p>
+
+            <div class="space-list">
+              <div class="space-item">
+                <div class="space-label">Lobby</div>
+                <div class="space-text">
+                  The first encounter. A strong visual anchor introduces the atmosphere and sets the tone.
+                </div>
+              </div>
+
+              <div class="space-item">
+                <div class="space-label">Corridor</div>
+                <div class="space-text">
+                  Repetition and variation create continuity. The guest begins to perceive a system rather than isolated works.
+                </div>
+              </div>
+
+              <div class="space-item">
+                <div class="space-label">Guest room</div>
+                <div class="space-text">
+                  The narrative becomes intimate. The space shifts from public impression to personal memory.
+                </div>
+              </div>
+
+              <div class="space-item">
+                <div class="space-label">Card</div>
+                <div class="space-text">
+                  A small printed artifact is handed to the guest at the end, allowing the experience to travel beyond the stay.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="room-stack">
+            <div class="mini-card">
+              <div class="mini-top">Pilot model</div>
+              <strong>Start with one floor</strong>
+              <span>
+                A focused implementation is often enough to demonstrate the concept clearly.
+              </span>
+            </div>
+
+            <div class="mini-card">
+              <div class="mini-top">Experience design</div>
+              <strong>Think in sequence, not pieces</strong>
+              <span>
+                The guest journey matters more than the number of artworks.
+              </span>
+            </div>
+
+            <div class="mini-card">
+              <div class="mini-top">Takeaway device</div>
+              <strong>Card as continuation</strong>
+              <span>
+                The guest leaves with a fragment of the stay, not simply a printed memento.
+              </span>
+            </div>
+
+            <div class="mini-card">
+              <div class="mini-top">Expansion</div>
+              <strong>Scale after validation</strong>
+              <span>
+                Once the pilot proves effective, the concept can extend across additional floors or zones.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-box" id="contact">
+          <div class="section-kicker">Invitation</div>
+          <h2>Let’s design one floor first.</h2>
+          <p>
+            A pilot implementation is often the best way to test how visual language,
+            spatial flow, and guest takeaway can work together inside a real hotel environment.
+            From there, the concept can expand into a larger branded experience.
+          </p>
+
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="mailto:your@email.com">Discuss a pilot proposal</a>
+            <a class="btn btn-secondary" href="./index.html">View main site</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-line">
+      never existed — Proposal for Hotels
+    </div>
+  </footer>
+</body>
+</html>
