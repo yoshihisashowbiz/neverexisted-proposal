@@ -67,87 +67,53 @@
   .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); max-width: 120px; }
 
   .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .concept-text h2 { font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.15; margin-bottom: 32px; font-style: italic; }
-  .concept-text p { font-size: 1.05rem; line-height: 1.85; color: var(--accent); margin-bottom: 20px; }
-  .series-cards { display: flex; flex-direction: column; gap: 2px; }
-  .series-card { padding: 32px; background: rgba(15,15,13,0.03); border: 1px solid var(--line); transition: background 0.3s ease; }
-  .series-card:hover { background: rgba(15,15,13,0.06); }
-  .series-card .series-name { font-family: 'Courier Prime', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ghost); margin-bottom: 12px; display: block; }
-  .series-card.chemical .series-name { color: var(--chemical); filter: saturate(1.5) brightness(0.8); }
-  .series-card h3 { font-size: 1.4rem; margin-bottom: 12px; font-style: italic; }
-  .series-card p { font-size: 0.9rem; line-height: 1.7; color: var(--ash); }
-
-  .works-section { padding: 100px 40px; max-width: 960px; margin: 0 auto; }
-  .works-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; margin-bottom: 3px; }
-  .work-item { position: relative; aspect-ratio: 3/4; overflow: hidden; cursor: pointer; }
-  .work-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; filter: grayscale(15%); }
-  .work-item:hover img { transform: scale(1.04); filter: grayscale(0%); }
-  .work-item .work-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 12px 12px; background: linear-gradient(transparent, rgba(15,15,13,0.7)); opacity: 0; transition: opacity 0.3s ease; }
-  .work-item:hover .work-label { opacity: 1; }
-  .work-label span { font-family: 'Courier Prime', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,242,236,0.9); display: block; }
-  .work-label strong { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-style: italic; font-weight: 300; color: var(--paper); display: block; margin-top: 2px; }
-  .works-series-label { font-family: 'Courier Prime', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); padding: 8px 0; border-top: 1px solid var(--line); margin-bottom: 3px; }
+  .concept-text h2 { font-size: 1.8rem; line-height: 1.3; margin-bottom: 32px; font-style: italic; color: var(--ink); }
+  .concept-text p { font-size: 1.05rem; line-height: 1.85; color: var(--accent); margin-bottom: 24px; }
+  
+  .staggered-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.8; color: var(--accent); }
+  .staggered-text p { margin-bottom: 24px; }
+  .staggered-text p em { display: block; font-size: 0.9em; color: var(--ash); font-style: italic; margin-top: 4px; }
 
   .implementation-section { padding: 100px 40px; max-width: 960px; margin: 0 auto; }
+  .impl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
   
-  /* 追加テキスト用の詩的なスタイル */
   .why-it-matters {
-    margin-top: 60px;
-    padding-top: 40px;
+    margin-top: 80px;
+    padding-top: 60px;
     border-top: 1px solid var(--line);
-    grid-column: 1 / -1; /* グリッド全体を使用 */
-  }
-  .why-it-matters h3 {
-    font-family: 'Courier Prime', monospace;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ash);
-    margin-bottom: 24px;
+    grid-column: 1 / -1;
   }
   .why-it-matters p {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-style: italic;
     line-height: 1.8;
     color: var(--accent);
-    margin-bottom: 12px;
-    max-width: 600px;
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+  .culture-note {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-top: 40px;
+    border-left: 2px solid var(--line);
+    padding-left: 20px;
   }
 
-  .model-section { padding: 100px 40px; max-width: 960px; margin: 0 auto; }
-  .model-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 80px; }
-  .model-intro h2 { font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.15; font-style: italic; }
-  .model-intro p { font-size: 1rem; line-height: 1.85; color: var(--accent); padding-top: 8px; }
-  .model-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .tier { padding: 40px 32px; border: 1px solid var(--line); position: relative; overflow: hidden; }
-  .tier::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--ink); opacity: 0.08; }
-  .tier-num { font-family: 'Courier Prime', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 20px; display: block; }
-  .tier h3 { font-size: 1.15rem; font-style: italic; margin-bottom: 8px; }
-  .tier .tier-desc { font-size: 0.85rem; color: var(--ash); line-height: 1.6; margin-bottom: 24px; }
-  .tier .tier-price { font-family: 'Courier Prime', monospace; font-size: 0.75rem; letter-spacing: 0.05em; color: var(--ink); border-top: 1px solid var(--line); padding-top: 20px; line-height: 1.8; }
-
-  .contact-section { padding: 100px 40px 140px; max-width: 960px; margin: 0 auto; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
-  .contact-left h2 { font-size: clamp(2.2rem, 4vw, 3.8rem); line-height: 1.1; font-style: italic; margin-bottom: 32px; }
-  .contact-left p { font-size: 0.95rem; line-height: 1.8; color: var(--accent); max-width: 340px; }
-  .contact-right { display: flex; flex-direction: column; gap: 32px; padding-bottom: 8px; }
-  .contact-item { border-bottom: 1px solid var(--line); padding-bottom: 20px; }
-  .contact-item .contact-type { font-family: 'Courier Prime', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 8px; display: block; }
-  .contact-item a { font-size: 1.05rem; color: var(--ink); text-decoration: none; font-style: italic; transition: color 0.2s; }
-  .contact-item a:hover { color: var(--ash); }
-  .work-link { display: inline-flex; align-items: center; gap: 10px; font-family: 'Courier Prime', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ash); text-decoration: none; border: 1px solid var(--line); padding: 14px 24px; transition: all 0.3s ease; margin-top: 16px; }
-  .work-link:hover { border-color: var(--ink); color: var(--ink); }
-  .work-link::after { content: '→'; font-style: normal; }
-
-  footer { border-top: 1px solid var(--line); padding: 32px 40px; max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-  footer span { font-family: 'Courier Prime', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ash); }
+  /* その他の既存スタイルは維持 */
+  .works-section { padding: 100px 40px; max-width: 960px; margin: 0 auto; }
+  .works-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; margin-bottom: 3px; }
+  .work-item { position: relative; aspect-ratio: 3/4; overflow: hidden; }
+  .work-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%); }
+  .works-series-label { font-family: 'Courier Prime', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); padding: 8px 0; border-top: 1px solid var(--line); margin-bottom: 3px; }
 
   @media (max-width: 700px) {
     .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
     .hero-image-stack { display: none; }
-    .concept-grid, .model-intro, .model-tiers, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    section, .works-section, .implementation-section, .model-section, .contact-section { padding: 60px 24px; }
-    .works-grid { grid-template-columns: repeat(3, 1fr); }
+    .concept-grid, .impl-grid { grid-template-columns: 1fr; gap: 40px; }
+    section, .works-section, .implementation-section { padding: 60px 24px; }
   }
 </style>
 </head>
@@ -168,32 +134,30 @@
   </div>
   <div class="hero-right">
     <div class="hero-image-stack">
-      <img src="images/img00038.jpg" alt="Ghost 01 — Threshold">
-      <img src="images/img00074.jpg" alt="Chemical 02 — Reaction">
+      <img src="images/img00038.jpg" alt="Ghost 01">
+      <img src="images/img00074.jpg" alt="Chemical 02">
     </div>
   </div>
 </div>
 
 <hr class="rule" style="max-width:960px;margin:0 auto;">
 
-<section>
+<section id="concept">
   <div class="section-label">01 — Concept</div>
   <div class="concept-grid">
     <div class="concept-text">
-      <h2>Two series.<br>One impossible city.</h2>
-      <p>Every city produces residue — light that doesn't belong, surfaces that outlast their purpose, reactions that occur without witnesses. TOKYO IP extracts these moments and reconstitutes them as a coherent visual system.</p>
-      <p>This is intellectual property, not decoration. The works do not illustrate Tokyo. They generate a Tokyo that never existed — available exclusively through licensed deployment.</p>
-    </div>
-    <div class="series-cards">
-      <div class="series-card">
-        <span class="series-name">Series I — Ghost</span>
-        <h3>Residual Tokyo</h3>
-        <p>What the city leaves behind after attention has moved on. Threshold, passage, sediment, periphery — five works tracing the archaeology of an ordinary moment.</p>
+      <h2>We don’t create content.</h2>
+      <p>We create artifacts of a city that never existed.</p>
+      <div class="staggered-text">
+        <p>Not a beginning. <em>Just something that remained.</em></p>
+        <p>No one stays. <em>Still, something passes.</em></p>
+        <p>It wasn’t light. <em>What it left behind.</em></p>
+        <p>Nothing happens here. <em>That’s why it stays.</em></p>
       </div>
-      <div class="series-card chemical">
-        <span class="series-name">Series II — Chemical</span>
-        <h3>Synthetic Tokyo</h3>
-        <p>The city as reaction: severance, precipitation, saturation, cooling — five works mapping the physics of urban intensity at the moment it exceeds itself.</p>
+    </div>
+    <div class="concept-text" style="align-self: flex-end;">
+      <div class="staggered-text">
+        <p>After everything ends, <strong>something remains.</strong></p>
       </div>
     </div>
   </div>
@@ -201,108 +165,130 @@
 
 <hr class="rule" style="max-width:960px;margin:0 auto;">
 
-<div class="works-section">
+<div class="works-section" id="works">
   <div class="section-label">02 — The Works</div>
+  <div class="concept-grid" style="margin-bottom: 60px;">
+    <div class="concept-text">
+      <p>Each work is not an image of Tokyo.<br>It is a fragment of a city that never existed.</p>
+      <p>They do not document reality.<br>They suggest something that might have been there.</p>
+    </div>
+    <div class="concept-text">
+      <p>Subtle, but persistent.<br>Quiet, but irreversible.</p>
+      <p>What appears is not presence,<br>but <strong>residue.</strong></p>
+    </div>
+  </div>
+
   <div class="works-series-label">Ghost — Residual Tokyo</div>
   <div class="works-grid">
-    <div class="work-item"><img src="images/img00038.jpg" alt="Threshold"><div class="work-label"><span>Ghost — 01</span><strong>Threshold</strong></div></div>
-    <div class="work-item"><img src="images/img00064.jpg" alt="Passage"><div class="work-label"><span>Ghost — 02</span><strong>Passage</strong></div></div>
-    <div class="work-item"><img src="images/img00012.jpg" alt="Residue"><div class="work-label"><span>Ghost — 03</span><strong>Residue</strong></div></div>
-    <div class="work-item"><img src="images/img00022.jpg" alt="Periphery"><div class="work-label"><span>Ghost — 04</span><strong>Periphery</strong></div></div>
-    <div class="work-item"><img src="images/img00076.jpg" alt="Sediment"><div class="work-label"><span>Ghost — 05</span><strong>Sediment</strong></div></div>
+    <div class="work-item"><img src="images/img00038.jpg" alt="Threshold"></div>
+    <div class="work-item"><img src="images/img00064.jpg" alt="Passage"></div>
+    <div class="work-item"><img src="images/img00012.jpg" alt="Residue"></div>
+    <div class="work-item"><img src="images/img00022.jpg" alt="Periphery"></div>
+    <div class="work-item"><img src="images/img00076.jpg" alt="Sediment"></div>
   </div>
 
   <div class="works-series-label" style="margin-top:40px;">Chemical — Synthetic Tokyo</div>
   <div class="works-grid">
-    <div class="work-item"><img src="images/img00055.jpg" alt="Severance"><div class="work-label"><span>Chemical — 01</span><strong>Severance</strong></div></div>
-    <div class="work-item"><img src="images/img00074.jpg" alt="Reaction"><div class="work-label"><span>Chemical — 02</span><strong>Reaction</strong></div></div>
-    <div class="work-item"><img src="images/img00007.jpg" alt="Precipitation"><div class="work-label"><span>Chemical — 03</span><strong>Precipitation</strong></div></div>
-    <div class="work-item"><img src="images/img00071.jpg" alt="Saturation"><div class="work-label"><span>Chemical — 04</span><strong>Saturation</strong></div></div>
-    <div class="work-item"><img src="images/img00045.jpg" alt="Cooling"><div class="work-label"><span>Chemical — 05</span><strong>Cooling</strong></div></div>
+    <div class="work-item"><img src="images/img00055.jpg" alt="Severance"></div>
+    <div class="work-item"><img src="images/img00074.jpg" alt="Reaction"></div>
+    <div class="work-item"><img src="images/img00007.jpg" alt="Precipitation"></div>
+    <div class="work-item"><img src="images/img00071.jpg" alt="Saturation"></div>
+    <div class="work-item"><img src="images/img00045.jpg" alt="Cooling"></div>
   </div>
 </div>
 
 <hr class="rule" style="max-width:960px;margin:0 auto;">
 
-<div class="implementation-section">
+<div class="implementation-section" id="implementation">
   <div class="section-label">03 — Implementation</div>
-  <div class="concept-grid">
-    <div class="concept-text">
-      <h2>What happens</h2>
-      <p>Guests do not just stay. They encounter a city that never existed.</p>
-      <p>Each room becomes a different memory of Tokyo. The hotel transforms from a place to stay into a place to experience an alternative reality.</p>
+  
+  <div class="impl-grid">
+    <div>
+      <h3 style="font-family:'Courier Prime'; font-size:0.7rem; text-transform:uppercase; margin-bottom:24px; color:var(--ash);">What happens</h3>
+      <p style="font-size:1.1rem; margin-bottom:20px;">Guests do not just stay.<br>They encounter a city that never existed.</p>
+      <p style="color:var(--ash);">Each room becomes a different memory of Tokyo.<br>The hotel transforms from a place to stay into a place to experience an alternative reality.</p>
     </div>
-    <div class="series-cards">
-      <div class="series-card" style="margin-bottom: 24px; background: none; border: none; padding: 0;">
-        <span class="series-name">Installation</span>
-        <p style="color: var(--ink); font-size: 1.05rem; margin-bottom: 16px;">The project is implemented as a layered system:</p>
-        <ul style="list-style: none; font-family: 'Courier Prime', monospace; font-size: 0.75rem; color: var(--ash); line-height: 2.2;">
-          <li><span style="color: var(--ink);">• Anchor:</span> A central piece defining the space</li>
-          <li><span style="color: var(--ink);">• Variation:</span> Multiple works distributed across rooms</li>
-          <li><span style="color: var(--ink);">• Transition:</span> Subtle elements that appear in between</li>
-        </ul>
-        <p style="font-size: 0.85rem; margin-top: 16px; color: var(--ash); font-style: italic;">
-          In addition, fragments appear throughout the space, sometimes in the form of small cards. Not as explanation, but as residual matter of the experience.
-        </p>
-      </div>
-      <div class="series-card" style="background: rgba(15,15,13,0.03); border-left: 2px solid var(--ink); padding: 24px;">
-        <span class="series-name">Pilot Scale</span>
-        <ul style="list-style: none; font-family: 'Courier Prime', monospace; font-size: 0.75rem; color: var(--ash); line-height: 1.8;">
-          <li>• 1 floor / 3–5 works</li>
-          <li>• Optional card system</li>
-        </ul>
-        <p style="font-size: 0.75rem; margin-top: 12px; font-style: italic; color: var(--ash);">
-          Scalable implementation. A pilot package designed to test the spatial narrative within a controlled environment.
-        </p>
-      </div>
+    
+    <div>
+      <h3 style="font-family:'Courier Prime'; font-size:0.7rem; text-transform:uppercase; margin-bottom:24px; color:var(--ash);">Installation</h3>
+      <p style="margin-bottom:16px;">The project is implemented as a layered system:</p>
+      <ul style="list-style:none; font-family:'Courier Prime'; font-size:0.75rem; color:var(--ash); line-height:2.4; margin-bottom:32px;">
+        <li><span style="color:var(--ink);">• Anchor:</span> A central work defining the space</li>
+        <li><span style="color:var(--ink);">• Variation:</span> Multiple works distributed across rooms</li>
+        <li><span style="color:var(--ink);">• Transition:</span> Subtle elements that appear in between</li>
+      </ul>
+      <p style="font-style:italic; font-size:0.95rem; color:var(--accent);">
+        In addition, fragments appear throughout the space, sometimes in the form of small cards.<br>
+        Not as explanation, but as traces of the experience.
+      </p>
     </div>
+  </div>
 
-    <div class="why-it-matters">
-      <h3>Why this matters</h3>
-      <p>This is not an art installation.</p>
-      <p>It is a way to redefine how a hotel is experienced.</p>
-      <p>In a city like Tokyo, where everything already exists, what remains valuable is what has never existed.</p>
-      <p>This project introduces a layer of memory that cannot be replicated elsewhere.</p>
+  <div class="impl-grid" style="margin-top:60px;">
+    <div>
+      <h3 style="font-family:'Courier Prime'; font-size:0.7rem; text-transform:uppercase; margin-bottom:24px; color:var(--ash);">Pilot</h3>
+      <p style="margin-bottom:16px;">The project can begin on a small scale:</p>
+      <ul style="list-style:none; font-family:'Courier Prime'; font-size:0.75rem; color:var(--ash); line-height:2.0;">
+        <li>• 1 floor</li>
+        <li>• 3–5 works</li>
+        <li>• Optional card-based elements</li>
+      </ul>
+      <p style="font-size:0.85rem; color:var(--ash); margin-top:12px;">Flexible depending on space and concept.</p>
+    </div>
+  </div>
+
+  <div class="why-it-matters">
+    <p>This is not an art installation.</p>
+    <p>It is a way to redefine how a hotel is experienced.</p>
+    <p>In a city like Tokyo, where everything already exists, what remains valuable is what has never existed.</p>
+    <p>This project introduces a layer of memory that cannot be replicated elsewhere.</p>
+    <p>This aligns with hotels that position themselves as cultural platforms, not just places to stay.</p>
+    
+    <div class="culture-note">
+      Designed for a hotel that values culture, not just stay.
     </div>
   </div>
 </div>
 
 <hr class="rule" style="max-width:960px;margin:0 auto;">
 
-<div class="model-section">
+<section id="licensing">
   <div class="section-label">04 — Licensing Model</div>
-  <div class="model-intro">
-    <h2>Three layers.<br>One continuous relationship.</h2>
-    <p>TOKYO IP does not sell images. It licenses a world — deployed across space, sustained over time, calibrated to the specific character of each environment.</p>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 80px;">
+    <h2 style="font-style: italic;">Three layers.<br>One continuous relationship.</h2>
+    <p style="color: var(--ash);">TOKYO IP does not sell images. It licenses a world — deployed across space, sustained over time, calibrated to the specific character of each environment.</p>
   </div>
-  <div class="model-tiers">
-    <div class="tier"><span class="tier-num">Layer 01</span><h3>Concept Design</h3><p class="tier-desc">Spatial narrative development. Unique to each property.</p><div class="tier-price">¥3,000,000 — ¥10,000,000</div></div>
-    <div class="tier"><span class="tier-num">Layer 02</span><h3>Production</h3><p class="tier-desc">Large-format output, installation coordination.</p><div class="tier-price">¥500,000 — ¥1,500,000<br>per work</div></div>
-    <div class="tier"><span class="tier-num">Layer 03</span><h3>License</h3><p class="tier-desc">Annual licensing fee covering exclusive deployment rights.</p><div class="tier-price">¥1,000,000 — ¥5,000,000<br>per year</div></div>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;">
+    <div style="padding: 40px 32px; border: 1px solid var(--line);"><span style="font-family:'Courier Prime'; font-size:0.6rem; color:var(--ash);">Layer 01</span><h3 style="font-style:italic; margin:12px 0;">Concept Design</h3><p style="font-size:0.85rem; color:var(--ash);">Spatial narrative development. Unique to each property.</p></div>
+    <div style="padding: 40px 32px; border: 1px solid var(--line);"><span style="font-family:'Courier Prime'; font-size:0.6rem; color:var(--ash);">Layer 02</span><h3 style="font-style:italic; margin:12px 0;">Production</h3><p style="font-size:0.85rem; color:var(--ash);">Large-format output, installation coordination.</p></div>
+    <div style="padding: 40px 32px; border: 1px solid var(--line);"><span style="font-family:'Courier Prime'; font-size:0.6rem; color:var(--ash);">Layer 03</span><h3 style="font-style:italic; margin:12px 0;">License</h3><p style="font-size:0.85rem; color:var(--ash);">Annual licensing fee covering exclusive deployment rights.</p></div>
   </div>
-</div>
+</section>
 
 <hr class="rule" style="max-width:960px;margin:0 auto;">
 
 <div class="contact-section">
   <div class="section-label">05 — Contact</div>
-  <div class="contact-grid">
-    <div class="contact-left">
-      <h2>Let's build<br>something<br>that stays.</h2>
-      <p>All inquiries regarding licensing, spatial deployment, or collaboration are handled directly.</p>
-      <a href="https://yoshihisashowbiz.github.io/neverexisted/" target="_blank" class="work-link">View the works</a>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: flex-end;">
+    <div>
+      <h2 style="font-size: 3rem; font-style: italic; line-height: 1.1; margin-bottom: 32px;">Let's build<br>something<br>that stays.</h2>
+      <a href="https://yoshihisashowbiz.github.io/neverexisted/" target="_blank" style="text-decoration:none; font-family:'Courier Prime'; font-size:0.7rem; color:var(--ink); border:1px solid var(--line); padding:16px 24px; display:inline-block;">VIEW THE WORKS →</a>
     </div>
-    <div class="contact-right">
-      <div class="contact-item"><span class="contact-type">Email</span><a href="mailto:yoshihisa.show.biz@gmail.com">yoshihisa.show.biz@gmail.com</a></div>
-      <div class="contact-item"><span class="contact-type">Instagram</span><a href="https://www.instagram.com/yoshihisa_sakamoto/" target="_blank">@yoshihisa_sakamoto</a></div>
-      <div class="contact-item"><span class="contact-type">Author</span><a href="#">Yoshihisa Sakamoto — Tokyo</a></div>
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <div style="border-bottom: 1px solid var(--line); padding-bottom: 16px;">
+        <span style="font-family:'Courier Prime'; font-size:0.6rem; color:var(--ash); display:block; margin-bottom:8px;">Email</span>
+        <a href="mailto:yoshihisa.show.biz@gmail.com" style="text-decoration:none; color:var(--ink); font-style:italic;">yoshihisa.show.biz@gmail.com</a>
+      </div>
+      <div style="border-bottom: 1px solid var(--line); padding-bottom: 16px;">
+        <span style="font-family:'Courier Prime'; font-size:0.6rem; color:var(--ash); display:block; margin-bottom:8px;">Instagram</span>
+        <a href="https://www.instagram.com/yoshihisa_sakamoto/" target="_blank" style="text-decoration:none; color:var(--ink); font-style:italic;">@yoshihisa_sakamoto</a>
+      </div>
     </div>
   </div>
 </div>
 
-<footer style="border-top:1px solid var(--line);padding:32px 40px;max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;">
-  <span>© 2026 Yoshihisa Sakamoto — A City That Never Existed</span>
-  <span>All rights reserved — Licensing only</span>
+<footer style="border-top: 1px solid var(--line); padding: 32px 40px; max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+  <span style="font-family:'Courier Prime'; font-size:0.6rem; color:var(--ash);">© 2026 Yoshihisa Sakamoto — A City That Never Existed</span>
 </footer>
 
 </body>
