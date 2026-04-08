@@ -88,6 +88,7 @@
   .work-label strong { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-style: italic; font-weight: 300; color: var(--paper); display: block; margin-top: 2px; }
   .works-series-label { font-family: 'Courier Prime', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); padding: 8px 0; border-top: 1px solid var(--line); margin-bottom: 3px; }
 
+  .implementation-section { padding: 100px 40px; max-width: 960px; margin: 0 auto; }
   .model-section { padding: 100px 40px; max-width: 960px; margin: 0 auto; }
   .model-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 80px; }
   .model-intro h2 { font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.15; font-style: italic; }
@@ -120,7 +121,7 @@
     .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
     .hero-image-stack { display: none; }
     .concept-grid, .model-intro, .model-tiers, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-    section, .works-section, .model-section, .contact-section { padding: 60px 24px; }
+    section, .works-section, .implementation-section, .model-section, .contact-section { padding: 60px 24px; }
     .works-grid { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
@@ -177,38 +178,6 @@
 
 <div class="works-section">
   <div class="section-label">02 — The Works</div>
-
-  <div style="padding: 40px 0 80px; max-width: 960px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 60px; border-bottom: 1px solid rgba(15,15,13,0.12); margin-bottom: 60px;">
-    <div style="flex: 1; min-width: 300px;">
-      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-style: italic; font-weight: 300; margin-bottom: 32px; color: #0f0f0d;">What happens</h2>
-      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.8; color: #2a2a26; margin-bottom: 20px;">
-        Guests do not just stay. They encounter a city that never existed.
-      </p>
-      <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.8; color: #2a2a26;">
-        Each room becomes a different memory of Tokyo. The hotel transforms from a place to stay into a place to experience an alternative reality.
-      </p>
-    </div>
-    <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; gap: 32px;">
-      <div>
-        <span style="font-family: 'Courier Prime', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #9a9590; margin-bottom: 12px; display: block;">Installation</span>
-        <p style="font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: #0f0f0d; margin-bottom: 12px;">The project is implemented as a layered system:</p>
-        <ul style="list-style: none; font-family: 'Courier Prime', monospace; font-size: 0.75rem; color: #9a9590; line-height: 2.2;">
-          <li><span style="color: #0f0f0d;">• Anchor:</span> A central piece defining the space</li>
-          <li><span style="color: var(--ink);">• Variation:</span> Multiple works distributed across rooms</li>
-          <li><span style="color: var(--ink);">• Transition:</span> Subtle elements that appear in between</li>
-        </ul>
-        <p style="font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; margin-top: 16px; color: #9a9590; font-style: italic;">In addition, small cards are placed throughout the space.</p>
-      </div>
-      <div style="background: rgba(15,15,13,0.03); border-left: 2px solid #0f0f0d; padding: 24px;">
-        <span style="font-family: 'Courier Prime', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--chemical); margin-bottom: 8px; display: block;">Pilot Scale</span>
-        <ul style="list-style: none; font-family: 'Courier Prime', monospace; font-size: 0.75rem; color: #9a9590; line-height: 1.8;">
-          <li>• 1 floor / 3–5 works</li>
-          <li>• Optional card system</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
   <div class="works-series-label">Ghost — Residual Tokyo</div>
   <div class="works-grid">
     <div class="work-item"><img src="images/img00038.jpg" alt="Threshold"><div class="work-label"><span>Ghost — 01</span><strong>Threshold</strong></div></div>
@@ -230,8 +199,40 @@
 
 <hr class="rule" style="max-width:960px;margin:0 auto;">
 
+<div class="implementation-section">
+  <div class="section-label">03 — Implementation</div>
+  <div class="concept-grid">
+    <div class="concept-text">
+      <h2>What happens</h2>
+      <p>Guests do not just stay. They encounter a city that never existed.</p>
+      <p>Each room becomes a different memory of Tokyo. The hotel transforms from a place to stay into a place to experience an alternative reality.</p>
+    </div>
+    <div class="series-cards">
+      <div class="series-card" style="margin-bottom: 24px; background: none; border: none; padding: 0;">
+        <span class="series-name">Installation</span>
+        <p style="color: var(--ink); font-size: 1.05rem; margin-bottom: 16px;">The project is implemented as a layered system:</p>
+        <ul style="list-style: none; font-family: 'Courier Prime', monospace; font-size: 0.75rem; color: var(--ash); line-height: 2.2;">
+          <li><span style="color: var(--ink);">• Anchor:</span> A central piece defining the space</li>
+          <li><span style="color: var(--ink);">• Variation:</span> Multiple works distributed across rooms</li>
+          <li><span style="color: var(--ink);">• Transition:</span> Subtle elements that appear in between</li>
+        </ul>
+        <p style="font-size: 0.85rem; margin-top: 16px; color: var(--ash); font-style: italic;">In addition, small cards are placed throughout the space.</p>
+      </div>
+      <div class="series-card" style="background: rgba(15,15,13,0.03); border-left: 2px solid var(--ink); padding: 24px;">
+        <span class="series-name">Pilot Scale</span>
+        <ul style="list-style: none; font-family: 'Courier Prime', monospace; font-size: 0.75rem; color: var(--ash); line-height: 1.8;">
+          <li>• 1 floor / 3–5 works</li>
+          <li>• Optional card system</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="rule" style="max-width:960px;margin:0 auto;">
+
 <div class="model-section">
-  <div class="section-label">03 — Licensing Model</div>
+  <div class="section-label">04 — Licensing Model</div>
   <div class="model-intro">
     <h2>Three layers.<br>One continuous relationship.</h2>
     <p>TOKYO IP does not sell images. It licenses a world — deployed across space, sustained over time, calibrated to the specific character of each environment.</p>
