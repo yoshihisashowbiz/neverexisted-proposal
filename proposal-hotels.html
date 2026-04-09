@@ -73,6 +73,14 @@
       white-space: nowrap;
     }
 
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     .nav {
       display: flex;
       align-items: center;
@@ -88,6 +96,38 @@
 
     .nav a:hover {
       color: var(--text);
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: transparent;
+      color: inherit;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+      opacity: 0.72;
+    }
+
+    .lang-btn:hover {
+      opacity: 1;
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .lang-btn.active {
+      opacity: 1;
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.45);
     }
 
     .hero {
@@ -481,6 +521,8 @@
     }
 
     @media (max-width: 980px) {
+      .site-header-inner,
+      .header-right,
       .hero-grid,
       .section-head,
       .example-grid,
@@ -488,6 +530,24 @@
       .infographic-top,
       .flow-row {
         grid-template-columns: 1fr;
+      }
+
+      .site-header-inner {
+        align-items: flex-start;
+        padding-top: 14px;
+        padding-bottom: 14px;
+      }
+
+      .header-right {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .nav {
+        gap: 14px;
       }
 
       .layer-card:not(:last-child) {
@@ -539,24 +599,32 @@
   <header class="site-header">
     <div class="container site-header-inner">
       <a href="./index.html" class="brand">never existed</a>
-      <nav class="nav">
-        <a href="./index.html">Back to main site</a>
-        <a href="#structure">Structure</a>
-        <a href="#flow">Flow</a>
-        <a href="#value">Value</a>
-        <a href="#contact">Contact</a>
-      </nav>
+
+      <div class="header-right">
+        <nav class="nav">
+          <a href="./index.html" data-i18n="nav_back">Back to main site</a>
+          <a href="#structure" data-i18n="nav_structure">Structure</a>
+          <a href="#flow" data-i18n="nav_flow">Flow</a>
+          <a href="#value" data-i18n="nav_value">Value</a>
+          <a href="#contact" data-i18n="nav_contact">Contact</a>
+        </nav>
+
+        <div class="lang-switch" aria-label="Language switch">
+          <button type="button" class="lang-btn active" data-set-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-set-lang="ja">JP</button>
+        </div>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div class="container">
-        <span class="eyebrow">Proposal for Hotels</span>
+        <span class="eyebrow" data-i18n="hero_eyebrow">Proposal for Hotels</span>
         <div class="hero-grid">
           <div>
-            <h1>From lobby to memory.</h1>
-            <p class="hero-copy">
+            <h1 data-i18n="hero_title">From lobby to memory.</h1>
+            <p class="hero-copy" data-i18n="hero_copy">
               We do not simply place artworks inside a hotel.
               We design a spatial experience that unfolds across the stay —
               from first encounter, to private reflection, to a final takeaway
@@ -565,14 +633,18 @@
           </div>
 
           <aside class="hero-panel">
-            <div class="hero-panel-label">Core idea</div>
+            <div class="hero-panel-label" data-i18n="core_idea_label">Core idea</div>
             <p>
-              <strong>Not decoration.</strong><br />
-              A hotel can become a sequence of impressions:
-              arrival, passage, pause, memory, and return.
-              The artwork is only one layer.<br /><br />
-              The real proposal is the design of how guests <strong>feel</strong>,
-              <strong>remember</strong>, and <strong>reconnect</strong> with the hotel after departure.
+              <strong data-i18n="core_idea_title">Not decoration.</strong><br />
+              <span data-i18n="core_idea_body_1">
+                A hotel can become a sequence of impressions:
+                arrival, passage, pause, memory, and return.
+                The artwork is only one layer.
+              </span><br /><br />
+              <span data-i18n="core_idea_body_2">
+                The real proposal is the design of how guests feel,
+                remember, and reconnect with the hotel after departure.
+              </span>
             </p>
           </aside>
         </div>
@@ -583,10 +655,10 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="section-kicker">Spatial framework</div>
-            <h2>The three-layer spatial hack</h2>
+            <div class="section-kicker" data-i18n="structure_kicker">Spatial framework</div>
+            <h2 data-i18n="structure_title">The three-layer spatial hack</h2>
           </div>
-          <div class="section-desc">
+          <div class="section-desc" data-i18n="structure_desc">
             This proposal is built as a layered system rather than a simple art placement plan.
             The visible image is only the first entry point.
             Meaning accumulates through movement, and finally becomes a personal memory the guest can take away.
@@ -596,30 +668,30 @@
         <div class="infographic-shell">
           <div class="infographic-top">
             <div class="layer-card">
-              <div class="layer-number">Layer 01</div>
-              <div class="layer-title">Visual Layer</div>
-              <div class="layer-sub">What the guest first sees</div>
-              <p>
+              <div class="layer-number" data-i18n="layer_1_num">Layer 01</div>
+              <div class="layer-title" data-i18n="layer_1_title">Visual Layer</div>
+              <div class="layer-sub" data-i18n="layer_1_sub">What the guest first sees</div>
+              <p data-i18n="layer_1_body">
                 Artworks, prints, or visual interventions introduce a slight shift in atmosphere.
                 The goal is not to fill walls, but to create the first signal that this hotel has a distinct inner world.
               </p>
             </div>
 
             <div class="layer-card">
-              <div class="layer-number">Layer 02</div>
-              <div class="layer-title">Cognitive Layer</div>
-              <div class="layer-sub">What the guest begins to notice</div>
-              <p>
+              <div class="layer-number" data-i18n="layer_2_num">Layer 02</div>
+              <div class="layer-title" data-i18n="layer_2_title">Cognitive Layer</div>
+              <div class="layer-sub" data-i18n="layer_2_sub">What the guest begins to notice</div>
+              <p data-i18n="layer_2_body">
                 As the guest moves through lobby, corridor, and room, the images connect into a system.
                 The stay becomes legible as an experience, not as isolated decoration.
               </p>
             </div>
 
             <div class="layer-card">
-              <div class="layer-number">Layer 03</div>
-              <div class="layer-title">Memory Layer</div>
-              <div class="layer-sub">What the guest carries away</div>
-              <p>
+              <div class="layer-number" data-i18n="layer_3_num">Layer 03</div>
+              <div class="layer-title" data-i18n="layer_3_title">Memory Layer</div>
+              <div class="layer-sub" data-i18n="layer_3_sub">What the guest carries away</div>
+              <p data-i18n="layer_3_body">
                 A card or printed artifact transforms the stay into a lasting touchpoint.
                 This is not a souvenir in the usual sense, but a continuation of the hotel’s identity outside the building.
               </p>
@@ -627,36 +699,36 @@
           </div>
 
           <div class="flow-wrap" id="flow">
-            <div class="flow-title">Experience flow</div>
+            <div class="flow-title" data-i18n="flow_title">Experience flow</div>
             <div class="flow-row">
               <div class="flow-card">
-                <div class="flow-step">Step 01</div>
-                <h3>Arrival</h3>
-                <p>
+                <div class="flow-step" data-i18n="step_1_num">Step 01</div>
+                <h3 data-i18n="step_1_title">Arrival</h3>
+                <p data-i18n="step_1_body">
                   The lobby introduces a visual atmosphere that immediately signals intention and character.
                 </p>
               </div>
 
               <div class="flow-card">
-                <div class="flow-step">Step 02</div>
-                <h3>Transition</h3>
-                <p>
+                <div class="flow-step" data-i18n="step_2_num">Step 02</div>
+                <h3 data-i18n="step_2_title">Transition</h3>
+                <p data-i18n="step_2_body">
                   Corridors and shared spaces create continuity, turning movement through the hotel into narrative.
                 </p>
               </div>
 
               <div class="flow-card">
-                <div class="flow-step">Step 03</div>
-                <h3>Private Room</h3>
-                <p>
+                <div class="flow-step" data-i18n="step_3_num">Step 03</div>
+                <h3 data-i18n="step_3_title">Private Room</h3>
+                <p data-i18n="step_3_body">
                   Inside the room, the visual language becomes personal. The guest’s relationship to the hotel deepens.
                 </p>
               </div>
 
               <div class="flow-card">
-                <div class="flow-step">Step 04</div>
-                <h3>Takeaway</h3>
-                <p>
+                <div class="flow-step" data-i18n="step_4_num">Step 04</div>
+                <h3 data-i18n="step_4_title">Takeaway</h3>
+                <p data-i18n="step_4_body">
                   A card extends the experience beyond checkout, creating memory, shareability, and future recall.
                 </p>
               </div>
@@ -670,10 +742,10 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="section-kicker">Why it matters</div>
-            <h2>Value for the hotel</h2>
+            <div class="section-kicker" data-i18n="value_kicker">Why it matters</div>
+            <h2 data-i18n="value_title">Value for the hotel</h2>
           </div>
-          <div class="section-desc">
+          <div class="section-desc" data-i18n="value_desc">
             The proposal is not only aesthetic. It also serves the hotel as a branding device,
             a memory device, and a guest relationship device.
           </div>
@@ -681,24 +753,24 @@
 
         <div class="value-grid">
           <div class="value-card">
-            <h3>Brand differentiation</h3>
-            <p>
+            <h3 data-i18n="value_1_title">Brand differentiation</h3>
+            <p data-i18n="value_1_body">
               The space feels authored rather than generically decorated.
               Guests sense that the hotel has a worldview, not just an interior style.
             </p>
           </div>
 
           <div class="value-card">
-            <h3>Emotional retention</h3>
-            <p>
+            <h3 data-i18n="value_2_title">Emotional retention</h3>
+            <p data-i18n="value_2_body">
               A designed sequence is easier to remember than a single object.
               This increases the likelihood that the stay remains vivid after departure.
             </p>
           </div>
 
           <div class="value-card">
-            <h3>Post-stay touchpoint</h3>
-            <p>
+            <h3 data-i18n="value_3_title">Post-stay touchpoint</h3>
+            <p data-i18n="value_3_body">
               The takeaway card creates a continuation of the guest relationship:
               something to keep, share, revisit, or reconnect through later.
             </p>
@@ -711,10 +783,10 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="section-kicker">Spatial example</div>
-            <h2>How it can work inside a hotel</h2>
+            <div class="section-kicker" data-i18n="example_kicker">Spatial example</div>
+            <h2 data-i18n="example_title">How it can work inside a hotel</h2>
           </div>
-          <div class="section-desc">
+          <div class="section-desc" data-i18n="example_desc">
             A first implementation does not need to cover the entire property at once.
             It can begin with one floor, one corridor, or one guest journey, then expand.
           </div>
@@ -722,8 +794,8 @@
 
         <div class="example-grid">
           <div class="example-card">
-            <h3>A phased introduction</h3>
-            <p>
+            <h3 data-i18n="example_card_title">A phased introduction</h3>
+            <p data-i18n="example_card_body">
               The proposal can start small while still feeling complete.
               This is not about “adding art” room by room.
               It is about establishing a coherent sequence of experience in a controlled pilot area.
@@ -731,29 +803,29 @@
 
             <div class="space-list">
               <div class="space-item">
-                <div class="space-label">Lobby</div>
-                <div class="space-text">
+                <div class="space-label" data-i18n="space_1_label">Lobby</div>
+                <div class="space-text" data-i18n="space_1_body">
                   The first encounter. A strong visual anchor introduces the atmosphere and sets the tone.
                 </div>
               </div>
 
               <div class="space-item">
-                <div class="space-label">Corridor</div>
-                <div class="space-text">
+                <div class="space-label" data-i18n="space_2_label">Corridor</div>
+                <div class="space-text" data-i18n="space_2_body">
                   Repetition and variation create continuity. The guest begins to perceive a system rather than isolated works.
                 </div>
               </div>
 
               <div class="space-item">
-                <div class="space-label">Guest room</div>
-                <div class="space-text">
+                <div class="space-label" data-i18n="space_3_label">Guest room</div>
+                <div class="space-text" data-i18n="space_3_body">
                   The narrative becomes intimate. The space shifts from public impression to personal memory.
                 </div>
               </div>
 
               <div class="space-item">
-                <div class="space-label">Card</div>
-                <div class="space-text">
+                <div class="space-label" data-i18n="space_4_label">Card</div>
+                <div class="space-text" data-i18n="space_4_body">
                   A small printed artifact is handed to the guest at the end, allowing the experience to travel beyond the stay.
                 </div>
               </div>
@@ -762,33 +834,33 @@
 
           <div class="room-stack">
             <div class="mini-card">
-              <div class="mini-top">Pilot model</div>
-              <strong>Start with one floor</strong>
-              <span>
+              <div class="mini-top" data-i18n="mini_1_top">Pilot model</div>
+              <strong data-i18n="mini_1_title">Start with one floor</strong>
+              <span data-i18n="mini_1_body">
                 A focused implementation is often enough to demonstrate the concept clearly.
               </span>
             </div>
 
             <div class="mini-card">
-              <div class="mini-top">Experience design</div>
-              <strong>Think in sequence, not pieces</strong>
-              <span>
+              <div class="mini-top" data-i18n="mini_2_top">Experience design</div>
+              <strong data-i18n="mini_2_title">Think in sequence, not pieces</strong>
+              <span data-i18n="mini_2_body">
                 The guest journey matters more than the number of artworks.
               </span>
             </div>
 
             <div class="mini-card">
-              <div class="mini-top">Takeaway device</div>
-              <strong>Card as continuation</strong>
-              <span>
+              <div class="mini-top" data-i18n="mini_3_top">Takeaway device</div>
+              <strong data-i18n="mini_3_title">Card as continuation</strong>
+              <span data-i18n="mini_3_body">
                 The guest leaves with a fragment of the stay, not simply a printed memento.
               </span>
             </div>
 
             <div class="mini-card">
-              <div class="mini-top">Expansion</div>
-              <strong>Scale after validation</strong>
-              <span>
+              <div class="mini-top" data-i18n="mini_4_top">Expansion</div>
+              <strong data-i18n="mini_4_title">Scale after validation</strong>
+              <span data-i18n="mini_4_body">
                 Once the pilot proves effective, the concept can extend across additional floors or zones.
               </span>
             </div>
@@ -796,34 +868,273 @@
         </div>
 
         <div class="cta-box" id="contact">
-          <div class="section-kicker">Invitation</div>
-          <h2>Let’s design one floor first.</h2>
-          <p>
+          <div class="section-kicker" data-i18n="cta_kicker">Invitation</div>
+          <h2 data-i18n="cta_title">Let’s design one floor first.</h2>
+          <p data-i18n="cta_body">
             A pilot implementation is often the best way to test how visual language,
             spatial flow, and guest takeaway can work together inside a real hotel environment.
             From there, the concept can expand into a larger branded experience.
           </p>
 
-<div class="cta-actions">
-  <a 
-    class="btn btn-primary"
-    href="mailto:yoshihisa.show.biz@gmail.com?subject=パイロット導入のご相談&body=以下の内容をご記入いただけますとスムーズです。%0D%0A%0D%0A■ホテル名：%0D%0A■ご担当者名：%0D%0A■ご検討中のエリア（ロビー / 廊下 / 客室など）：%0D%0A■ご相談内容：%0D%0A%0D%0A※まずは1フロアのみの小規模導入も可能です。お気軽にご相談ください。"
-  >
-    Discuss a pilot proposal
-  </a>
+          <div class="cta-actions">
+            <a
+              class="btn btn-primary"
+              id="mail-link"
+              href="mailto:yoshihisa.show.biz@gmail.com?subject=パイロット導入のご相談&body=以下の内容をご記入いただけますとスムーズです。%0D%0A%0D%0A■ホテル名：%0D%0A■ご担当者名：%0D%0A■ご検討中のエリア（ロビー / 廊下 / 客室など）：%0D%0A■ご相談内容：%0D%0A%0D%0A※まずは1フロアのみの小規模導入も可能です。お気軽にご相談ください。"
+              data-i18n="cta_button_primary"
+            >
+              Discuss a pilot proposal
+            </a>
 
-  <a class="btn btn-secondary" href="./index.html">
-    View main site
-  </a>
-</div>        </div>
+            <a class="btn btn-secondary" href="./index.html" data-i18n="cta_button_secondary">
+              View main site
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container footer-line">
+    <div class="container footer-line" data-i18n="footer_text">
       never existed — Proposal for Hotels
     </div>
   </footer>
+
+  <script>
+    const translations = {
+      en: {
+        nav_back: "Back to main site",
+        nav_structure: "Structure",
+        nav_flow: "Flow",
+        nav_value: "Value",
+        nav_contact: "Contact",
+
+        hero_eyebrow: "Proposal for Hotels",
+        hero_title: "From lobby to memory.",
+        hero_copy: "We do not simply place artworks inside a hotel. We design a spatial experience that unfolds across the stay — from first encounter, to private reflection, to a final takeaway that allows the guest to carry part of the experience beyond the room.",
+
+        core_idea_label: "Core idea",
+        core_idea_title: "Not decoration.",
+        core_idea_body_1: "A hotel can become a sequence of impressions: arrival, passage, pause, memory, and return. The artwork is only one layer.",
+        core_idea_body_2: "The real proposal is the design of how guests feel, remember, and reconnect with the hotel after departure.",
+
+        structure_kicker: "Spatial framework",
+        structure_title: "The three-layer spatial hack",
+        structure_desc: "This proposal is built as a layered system rather than a simple art placement plan. The visible image is only the first entry point. Meaning accumulates through movement, and finally becomes a personal memory the guest can take away.",
+
+        layer_1_num: "Layer 01",
+        layer_1_title: "Visual Layer",
+        layer_1_sub: "What the guest first sees",
+        layer_1_body: "Artworks, prints, or visual interventions introduce a slight shift in atmosphere. The goal is not to fill walls, but to create the first signal that this hotel has a distinct inner world.",
+
+        layer_2_num: "Layer 02",
+        layer_2_title: "Cognitive Layer",
+        layer_2_sub: "What the guest begins to notice",
+        layer_2_body: "As the guest moves through lobby, corridor, and room, the images connect into a system. The stay becomes legible as an experience, not as isolated decoration.",
+
+        layer_3_num: "Layer 03",
+        layer_3_title: "Memory Layer",
+        layer_3_sub: "What the guest carries away",
+        layer_3_body: "A card or printed artifact transforms the stay into a lasting touchpoint. This is not a souvenir in the usual sense, but a continuation of the hotel’s identity outside the building.",
+
+        flow_title: "Experience flow",
+        step_1_num: "Step 01",
+        step_1_title: "Arrival",
+        step_1_body: "The lobby introduces a visual atmosphere that immediately signals intention and character.",
+        step_2_num: "Step 02",
+        step_2_title: "Transition",
+        step_2_body: "Corridors and shared spaces create continuity, turning movement through the hotel into narrative.",
+        step_3_num: "Step 03",
+        step_3_title: "Private Room",
+        step_3_body: "Inside the room, the visual language becomes personal. The guest’s relationship to the hotel deepens.",
+        step_4_num: "Step 04",
+        step_4_title: "Takeaway",
+        step_4_body: "A card extends the experience beyond checkout, creating memory, shareability, and future recall.",
+
+        value_kicker: "Why it matters",
+        value_title: "Value for the hotel",
+        value_desc: "The proposal is not only aesthetic. It also serves the hotel as a branding device, a memory device, and a guest relationship device.",
+        value_1_title: "Brand differentiation",
+        value_1_body: "The space feels authored rather than generically decorated. Guests sense that the hotel has a worldview, not just an interior style.",
+        value_2_title: "Emotional retention",
+        value_2_body: "A designed sequence is easier to remember than a single object. This increases the likelihood that the stay remains vivid after departure.",
+        value_3_title: "Post-stay touchpoint",
+        value_3_body: "The takeaway card creates a continuation of the guest relationship: something to keep, share, revisit, or reconnect through later.",
+
+        example_kicker: "Spatial example",
+        example_title: "How it can work inside a hotel",
+        example_desc: "A first implementation does not need to cover the entire property at once. It can begin with one floor, one corridor, or one guest journey, then expand.",
+        example_card_title: "A phased introduction",
+        example_card_body: "The proposal can start small while still feeling complete. This is not about “adding art” room by room. It is about establishing a coherent sequence of experience in a controlled pilot area.",
+
+        space_1_label: "Lobby",
+        space_1_body: "The first encounter. A strong visual anchor introduces the atmosphere and sets the tone.",
+        space_2_label: "Corridor",
+        space_2_body: "Repetition and variation create continuity. The guest begins to perceive a system rather than isolated works.",
+        space_3_label: "Guest room",
+        space_3_body: "The narrative becomes intimate. The space shifts from public impression to personal memory.",
+        space_4_label: "Card",
+        space_4_body: "A small printed artifact is handed to the guest at the end, allowing the experience to travel beyond the stay.",
+
+        mini_1_top: "Pilot model",
+        mini_1_title: "Start with one floor",
+        mini_1_body: "A focused implementation is often enough to demonstrate the concept clearly.",
+        mini_2_top: "Experience design",
+        mini_2_title: "Think in sequence, not pieces",
+        mini_2_body: "The guest journey matters more than the number of artworks.",
+        mini_3_top: "Takeaway device",
+        mini_3_title: "Card as continuation",
+        mini_3_body: "The guest leaves with a fragment of the stay, not simply a printed memento.",
+        mini_4_top: "Expansion",
+        mini_4_title: "Scale after validation",
+        mini_4_body: "Once the pilot proves effective, the concept can extend across additional floors or zones.",
+
+        cta_kicker: "Invitation",
+        cta_title: "Let’s design one floor first.",
+        cta_body: "A pilot implementation is often the best way to test how visual language, spatial flow, and guest takeaway can work together inside a real hotel environment. From there, the concept can expand into a larger branded experience.",
+        cta_button_primary: "Discuss a pilot proposal",
+        cta_button_secondary: "View main site",
+
+        footer_text: "never existed — Proposal for Hotels",
+
+        mail_subject: "Inquiry about a pilot proposal",
+        mail_body: "Please fill in the following details if possible.%0D%0A%0D%0AHotel name:%0D%0AContact person:%0D%0AArea under consideration (lobby / corridor / guest room, etc.):%0D%0AInquiry details:%0D%0A%0D%0A*A small pilot starting with just one floor is also possible."
+      },
+
+      ja: {
+        nav_back: "メインサイトに戻る",
+        nav_structure: "構成",
+        nav_flow: "流れ",
+        nav_value: "価値",
+        nav_contact: "お問い合わせ",
+
+        hero_eyebrow: "ホテル向け提案",
+        hero_title: "ロビーから記憶へ。",
+        hero_copy: "私たちは単にホテル内に作品を置くのではありません。滞在のはじまりから、私的な内省、そして持ち帰れる余韻に至るまで、滞在全体にわたって展開する空間体験を設計します。",
+
+        core_idea_label: "基本構想",
+        core_idea_title: "装飾ではありません。",
+        core_idea_body_1: "ホテルは、到着、通過、滞在、記憶、再訪へと連なる印象の連鎖になりえます。アートはその一層にすぎません。",
+        core_idea_body_2: "本当の提案は、宿泊後も含めて、ゲストがどう感じ、どう記憶し、どうホテルと再接続するかを設計することです。",
+
+        structure_kicker: "空間設計",
+        structure_title: "3層でつくる空間体験",
+        structure_desc: "この提案は、単なるアート配置計画ではなく、層として積み上がる体験設計です。見えるイメージは入口にすぎず、意味は移動のなかで蓄積し、最後にはゲストが持ち帰る個人的な記憶になります。",
+
+        layer_1_num: "Layer 01",
+        layer_1_title: "視覚レイヤー",
+        layer_1_sub: "最初に目に入るもの",
+        layer_1_body: "作品やプリント、視覚的介入によって、空間にわずかなズレを生み出します。壁を埋めることが目的ではなく、このホテルには固有の世界観があると感じさせる最初の合図をつくります。",
+
+        layer_2_num: "Layer 02",
+        layer_2_title: "認知レイヤー",
+        layer_2_sub: "滞在のなかで気づき始めるもの",
+        layer_2_body: "ロビー、廊下、客室へと移動する中で、イメージ同士がつながり、滞在が単なる装飾の集合ではなく、一つの体験として読めるようになります。",
+
+        layer_3_num: "Layer 03",
+        layer_3_title: "記憶レイヤー",
+        layer_3_sub: "ゲストが持ち帰るもの",
+        layer_3_body: "カードや印刷物が、滞在を持続する接点へと変えます。これは一般的な意味での土産ではなく、ホテルのアイデンティティを建物の外へ持ち出すための媒体です。",
+
+        flow_title: "体験の流れ",
+        step_1_num: "Step 01",
+        step_1_title: "Arrival",
+        step_1_body: "ロビーが最初の視覚的な空気を立ち上げ、このホテルの意図と個性を即座に伝えます。",
+        step_2_num: "Step 02",
+        step_2_title: "Transition",
+        step_2_body: "廊下や共用部が連続性をつくり、ホテル内の移動そのものがひとつの物語になります。",
+        step_3_num: "Step 03",
+        step_3_title: "Private Room",
+        step_3_body: "客室では視覚言語がより個人的なものになり、ゲストとホテルの関係が深まります。",
+        step_4_num: "Step 04",
+        step_4_title: "Takeaway",
+        step_4_body: "カードがチェックアウト後にも体験を延長し、記憶・共有・再想起のきっかけを生みます。",
+
+        value_kicker: "導入価値",
+        value_title: "ホテルにもたらす価値",
+        value_desc: "この提案は美観のためだけではありません。ブランド形成、記憶形成、そして宿泊後の関係継続の装置として機能します。",
+        value_1_title: "ブランド差別化",
+        value_1_body: "空間が「ただ飾られている」のではなく、「意図をもって設計されている」と感じられます。ホテルに内装以上の世界観があると伝わります。",
+        value_2_title: "感情の定着",
+        value_2_body: "単体のオブジェクトよりも、設計された体験の連なりのほうが記憶に残りやすく、宿泊後の印象を強くします。",
+        value_3_title: "滞在後の接点",
+        value_3_body: "カードは、持ち帰る・共有する・見返す・再接続するための導線になり、宿泊後にも関係を延ばします。",
+
+        example_kicker: "導入イメージ",
+        example_title: "ホテル内での実装例",
+        example_desc: "最初から施設全体に展開する必要はありません。まずは1フロア、1本の廊下、1つの導線から始めて、そこから拡張できます。",
+        example_card_title: "段階的な導入",
+        example_card_body: "小さく始めても、体験としては十分に完成させられます。部屋ごとにアートを足す話ではなく、限定された領域で一貫した体験の流れを立ち上げることが重要です。",
+
+        space_1_label: "Lobby",
+        space_1_body: "最初の接点。強い視覚的アンカーが空気感を立ち上げ、全体のトーンを決めます。",
+        space_2_label: "Corridor",
+        space_2_body: "反復と変奏によって連続性が生まれ、ゲストは個別の作品ではなく、ひとつのシステムとして知覚し始めます。",
+        space_3_label: "Guest room",
+        space_3_body: "物語はより親密になります。空間は公的な印象から私的な記憶へと移行します。",
+        space_4_label: "Card",
+        space_4_body: "滞在の終わりに小さな印刷物を手渡すことで、体験はホテルの外へ持ち出されます。",
+
+        mini_1_top: "Pilot model",
+        mini_1_title: "まずは1フロアから",
+        mini_1_body: "絞り込んだ導入でも、コンセプトは十分に明確に伝えられます。",
+        mini_2_top: "Experience design",
+        mini_2_title: "点ではなく流れで考える",
+        mini_2_body: "作品数よりも、ゲストの体験導線のほうが重要です。",
+        mini_3_top: "Takeaway device",
+        mini_3_title: "カードは体験の延長",
+        mini_3_body: "ゲストが持ち帰るのは、単なる印刷物ではなく、滞在の断片です。",
+        mini_4_top: "Expansion",
+        mini_4_title: "検証後に拡張する",
+        mini_4_body: "パイロットで有効性が確認できれば、他フロアや他ゾーンへ展開できます。",
+
+        cta_kicker: "Invitation",
+        cta_title: "まずは1フロアから設計しませんか。",
+        cta_body: "パイロット導入は、視覚言語・空間導線・持ち帰り体験が実際のホテル内でどう機能するかを検証するのに最適です。そこから全館的なブランド体験へと広げていけます。",
+        cta_button_primary: "パイロット導入について相談する",
+        cta_button_secondary: "メインサイトを見る",
+
+        footer_text: "never existed — ホテル向け提案",
+
+        mail_subject: "パイロット導入のご相談",
+        mail_body: "以下の内容をご記入いただけますとスムーズです。%0D%0A%0D%0A■ホテル名：%0D%0A■ご担当者名：%0D%0A■ご検討中のエリア（ロビー / 廊下 / 客室など）：%0D%0A■ご相談内容：%0D%0A%0D%0A※まずは1フロアのみの小規模導入も可能です。お気軽にご相談ください。"
+      }
+    };
+
+    function updateMailto(lang) {
+      const mailLink = document.getElementById("mail-link");
+      const subject = translations[lang].mail_subject;
+      const body = translations[lang].mail_body;
+      mailLink.href = `mailto:yoshihisa.show.biz@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    }
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.dataset.i18n;
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.setLang === lang);
+      });
+
+      updateMailto(lang);
+      localStorage.setItem("proposalLang", lang);
+    }
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        setLanguage(btn.dataset.setLang);
+      });
+    });
+
+    const savedLang = localStorage.getItem("proposalLang") || "en";
+    setLanguage(savedLang);
+  </script>
 </body>
 </html>
